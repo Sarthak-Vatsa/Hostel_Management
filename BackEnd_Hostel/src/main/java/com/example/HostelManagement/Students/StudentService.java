@@ -1,6 +1,7 @@
 package com.example.HostelManagement.Students;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,9 @@ public class StudentService
 {
     @Autowired
     private StudentRepo repo;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     private String hashPassword(String password){
         // Simple hash based on shifting and XORing byte values
@@ -34,7 +38,7 @@ public class StudentService
             return true;
         }
 
-        stu.setPassword(hashPassword(stu.getPassword()));
+        stu.setPassword(encoder.encode(stu.getPassword()));
         repo.save(stu);
 
         return false;
@@ -43,8 +47,8 @@ public class StudentService
     public boolean authenticateStudent(Long rollNo, String password)
     {
         Optional<Student> obj = repo.findByrollNo(rollNo);
-        String hashedPass = hashPassword(password);
-        return obj.isPresent() && hashedPass.equals( obj.get().getPassword() );
+        //String hashedPass = encoder.encode(password); -> wrong as bcrypt generates new salt everytime - even for the same password
+        return obj.isPresent() && encoder.matches(password, obj.get().getPassword());
     }
 
     public Student getStudentDetails(Long rollNo)

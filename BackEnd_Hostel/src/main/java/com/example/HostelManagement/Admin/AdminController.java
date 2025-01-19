@@ -3,6 +3,7 @@ package com.example.HostelManagement.Admin;
 import com.example.HostelManagement.Notices.Notice;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,14 +27,14 @@ public class AdminController
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<String> signin(@RequestParam String email, @RequestParam String password)
+    public ResponseEntity<String> signin(@RequestBody Admin admin)
     {
-        boolean exists = service.authenticateAdmin(email, password);
+        boolean exists = service.authenticateAdmin(admin.getEmail(), admin.getPassword());
         if(exists){
             return ResponseEntity.ok("Admin Login Successful!");
         }
         else{
-            return ResponseEntity.status(405).body("Invalid Credentials");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Credentials");
         }
     }
 

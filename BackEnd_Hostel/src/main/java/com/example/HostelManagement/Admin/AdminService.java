@@ -4,6 +4,7 @@ import com.example.HostelManagement.Complaints.ComplaintRepo;
 import com.example.HostelManagement.Notices.Notice;
 import com.example.HostelManagement.Notices.NoticeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -21,6 +22,9 @@ public class AdminService {
 
     @Autowired
     private ComplaintRepo complaintRepo;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     private String hashPassword(String password){
         // Simple hash based on shifting and XORing byte values
@@ -42,7 +46,7 @@ public class AdminService {
             return true;
         }
 
-        admin.setPassword(hashPassword(admin.getPassword()));
+        admin.setPassword(encoder.encode(admin.getPassword()));
         repo.save(admin);
         return false;
     }
@@ -50,9 +54,7 @@ public class AdminService {
     public boolean authenticateAdmin(String email, String password)
     {
         Optional<Admin> obj = repo.findByEmail(email);
-        String hashedPass = hashPassword(password);
-
-        return obj.isPresent() && hashedPass.equals(obj.get().getPassword());
+        return obj.isPresent() && encoder.matches(password, obj.get().getPassword());
     }
 
     public void addNotice(Notice notice)

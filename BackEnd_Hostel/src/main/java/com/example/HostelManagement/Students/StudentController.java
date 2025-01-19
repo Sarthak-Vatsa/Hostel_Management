@@ -38,16 +38,16 @@ public class StudentController
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<String> signin(@RequestParam Long rollNo, @RequestParam String password, HttpSession session)
+    public ResponseEntity<String> signin( @RequestBody Student stu, HttpSession session)
     {
-        boolean exists = service.authenticateStudent(rollNo, password);
+        boolean exists = service.authenticateStudent(stu.getRollNo(), stu.getPassword());
         if(exists){
             //store the rollNo in the current session since we will be requiring it to fetch complaints for logged in user
-            session.setAttribute("rollNo", rollNo);
+            session.setAttribute("rollNo", stu.getRollNo());
             return ResponseEntity.ok("Login Successful!");
         }
         else{
-            return ResponseEntity.status(405).body("Invalid Credentials");
+            return ResponseEntity.status(200).body("Invalid Credentials");
         }
     }
 }
