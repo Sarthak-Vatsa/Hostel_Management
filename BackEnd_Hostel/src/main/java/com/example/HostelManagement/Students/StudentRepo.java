@@ -10,5 +10,5 @@ public interface StudentRepo extends JpaRepository<Student, Long>
 {
     Optional<Student> findByrollNo(Long rollNo);
 
-    Student findByName(String username);
+    Student findByName(String name);
 }

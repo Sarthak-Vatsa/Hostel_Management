@@ -1,5 +1,6 @@
 package com.example.HostelManagement.Students;
 
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,7 @@ public class StudentPrincipal implements UserDetails
 
     StudentPrincipal(Student stu)
     {
+        System.out.println(stu.getPassword() + "hhhhhhhhh");
         student = stu;
     }
 
@@ -23,11 +25,13 @@ public class StudentPrincipal implements UserDetails
 
     @Override
     public String getPassword() {
+        System.out.println(student.getPassword());
         return student.getPassword();
     }
 
     @Override
     public String getUsername() {
+        System.out.println("In Principal");
         return String.valueOf(student.getRollNo());
     }
 

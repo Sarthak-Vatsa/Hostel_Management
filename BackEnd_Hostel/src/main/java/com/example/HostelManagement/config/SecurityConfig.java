@@ -19,21 +19,34 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
 
-//    @Bean
-//    public AuthenticationProvider authProvider() {
-//        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-//        provider.setUserDetailsService(userDetailsService);
-//        provider.setPasswordEncoder(new BCryptPasswordEncoder());
-//        return provider;
-//    }
+    @Autowired
+    private CustomAuthenticationSuccessHandler successHandler;
+
+    @Bean
+    public AuthenticationProvider authProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        System.out.println("In Config");
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
+        return provider;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for simplicity
-                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
-                .httpBasic(Customizer.withDefaults()) // Enable basic authentication
-                .formLogin(Customizer.withDefaults()); // Enable form-based login
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/students/signup", "/students/signin", "/admin/signup", "/admin/signin").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginProcessingUrl("/students/signin")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .successHandler(successHandler) // Use custom success handler
+                        .permitAll()
+                )
+                .httpBasic(Customizer.withDefaults()); // Enable basic authentication
 
         return http.build();
     }

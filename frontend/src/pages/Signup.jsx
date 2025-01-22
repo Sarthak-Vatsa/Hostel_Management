@@ -22,7 +22,7 @@ function Signup() {
                 </div>
                 <div className="grid w-full items-center gap-1.5">
                     <Label>Roll No</Label>
-                    <Input type="number" placeholder=""></Input>
+                    <Input type="text" placeholder=""></Input>
                 </div>
                 <div className='flex space-x-4'>
 
@@ -41,7 +41,7 @@ function Signup() {
                     <Input type="text" placeholder=""></Input>
                 </div>
                 <div className="grid w-full items-center gap-1.5">
-                    <Label>Roll No</Label>
+                    <Label>Password</Label>
                     <Input type="password" placeholder=""></Input>
                 </div>
                 <div className="grid w-full items-center gap-1.5">
