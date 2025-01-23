@@ -53,10 +53,10 @@ public class StudentController
 //        }
 //    }
 
-    @GetMapping("/logout")
-    public ResponseEntity<String> logout(HttpSession session, HttpServletResponse response) throws IOException {
-        session.invalidate();
-        //response.sendRedirect("/signup");
-        return ResponseEntity.ok("Logged Out Successfully");
-    }
+//    @GetMapping("/logout")
+//    public ResponseEntity<String> logout(HttpSession session, HttpServletResponse response) throws IOException {
+//        session.invalidate();
+//        //response.sendRedirect("/signup");
+//        return ResponseEntity.ok("Logged Out Successfully");
+//    }
 }

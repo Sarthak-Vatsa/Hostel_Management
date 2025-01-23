@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -34,6 +36,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configurationSource(request -> {
+                    var config = new org.springframework.web.cors.CorsConfiguration();
+                    config.setAllowedOrigins(List.of("http://localhost:3000")); // React frontend URL
+                    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    config.setAllowedHeaders(List.of("*"));
+                    config.setAllowCredentials(true);
+                    return config;
+                }))
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for simplicity
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/students/signup", "/students/signin", "/admin/signup", "/admin/signin").permitAll()
@@ -46,6 +56,13 @@ public class SecurityConfig {
                         .successHandler(successHandler) // Use custom success handler
                         .permitAll()
                 )
+                .logout(logout -> logout
+                        .logoutUrl("/logout") // URL for triggering logout
+                        .logoutSuccessHandler(customLogoutSuccessHandler())
+                        .invalidateHttpSession(true) // Invalidate the session
+                        .deleteCookies("JSESSIONID") // Delete cookies
+                        .permitAll()
+                )
                 .httpBasic(Customizer.withDefaults()); // Enable basic authentication
 
         return http.build();
@@ -54,5 +71,10 @@ public class SecurityConfig {
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder(12);
+    }
+
+    @Bean
+    public CustomLogoutSuccessHandler customLogoutSuccessHandler(){
+        return new CustomLogoutSuccessHandler();
     }
 }
