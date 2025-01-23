@@ -19,13 +19,13 @@ const Sidebar = () => {
 				<li className="flex items-center py-3 px-2 space-x-4 hover:rounded hover:cursor-pointer 
         hover:text-white hover:bg-blue-600">
 					<FaUsers />
-					<span className="hidden md:inline ">Logout</span>
+					<span className="hidden md:inline ">Register Complaint</span>
 				</li>
-				{/* <li className="flex items-center py-3 px-2 space-x-4 hover:rounded hover:cursor-pointer 
+				<li className="flex items-center py-3 px-2 space-x-4 hover:rounded hover:cursor-pointer 
         hover:text-white hover:bg-blue-600">
 					<FaUser />
-					<span className="hidden md:inline ">Users</span>
-				</li> */}
+					<span className="hidden md:inline ">LogOut</span>
+				</li>
 				{/* <li className="flex items-center py-3 px-2 space-x-4 hover:rounded hover:cursor-pointer 
         hover:text-white hover:bg-blue-600">
 					<FaBox />
