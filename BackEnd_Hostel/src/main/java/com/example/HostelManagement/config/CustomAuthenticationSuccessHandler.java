@@ -27,6 +27,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         // Set custom session attributes
         session.setAttribute("rollNo", user.getUsername());
 
+        System.out.println("Login Success");
+
         // Redirect to a default URL after login
         //response.sendRedirect("/home");
     }

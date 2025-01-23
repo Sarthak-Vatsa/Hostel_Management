@@ -4,6 +4,7 @@ import { Label } from '../components/ui/label'
 import { Button } from '../components/ui/button'
 import { BottomWarning } from '../components/BottomWarning'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function Signin() {
     const [username, setUsername] = useState("");
@@ -34,7 +35,7 @@ function Signin() {
                             username,
                             password
                         },{headers:{
-                            'Content-Type':'application/x-ww-form-urlencoded'
+                            'Content-Type':'application/x-www-form-urlencoded'
                         }})
                         console.log(response);
                         navigate("/dashboard");
