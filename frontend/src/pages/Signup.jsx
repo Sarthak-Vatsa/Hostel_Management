@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label"
 import { Button } from '../components/ui/button'
 import { BottomWarning } from '../components/BottomWarning'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function Signup() {
     const [name,setName] = useState("");
