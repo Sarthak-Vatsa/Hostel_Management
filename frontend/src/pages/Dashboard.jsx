@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 import { FaBox, FaCog, FaShoppingCart, FaUsers } from 'react-icons/fa'
 import Notification from '../components/Notification'
+import axios from 'axios'
 
 const Dashboard = () => {
     const [notification,setNotification] = useState([]);
@@ -11,8 +12,8 @@ const Dashboard = () => {
     useEffect(async ()=>{
         const resp = await axios.get("http://localhost:8000/students/viewNotices");
         console.log(resp);
-    },[notification]);
-    
+    },[]);
+
   return (
     <div className='flex'>
       <Sidebar />
