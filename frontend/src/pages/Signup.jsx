@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Input } from "../components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from '../components/ui/button'
 import { BottomWarning } from '../components/BottomWarning'
+import { useNavigate } from 'react-router-dom'
 
 function Signup() {
+    const [name,setName] = useState("");
+    const [username,setUsername] = useState("");
+    const [password,setPassword] = useState("");
+    const [branch,setBranch] = useState("");
+    const navigate = useNavigate();
   return (
     <div className='bg-yellow-200 flex h-screen justify-center'>
         <div className='h-full flex flex-col justify-center max-w-3xl w-full items-center'>
@@ -14,38 +20,43 @@ function Signup() {
                 </div>
                 <div className="grid w-full items-center gap-1.5">
                     <Label >Name</Label>
-                    <Input type="text" placeholder="John dean"></Input>
-                </div>
-                <div className="grid w-full items-center gap-1.5">
-                    <Label>Email</Label>
-                    <Input type="email" placeholder="abc@gmail.com"></Input>
+                    <Input onChange={(e)=>{
+                        setName(e.target.value);
+                    }} type="text" placeholder="John dean"></Input>
                 </div>
                 <div className="grid w-full items-center gap-1.5">
                     <Label>Roll No</Label>
-                    <Input type="text" placeholder=""></Input>
+                    <Input onChange={(e)=>{
+                        setUsername(e.target.value);
+                    }} type="text" placeholder=""></Input>
                 </div>
                 <div className='flex space-x-4'>
-
                     <div className="grid w-full items-center gap-1.5">
                         <Label>Branch</Label>
-                        <Input type="text" placeholder=""></Input>
+                        <Input onChange={(e)=>{
+                            setBranch(e.target.value);
+                        }} type="text" placeholder=""></Input>
                     </div>
-                    <div className="grid w-full items-center gap-1.5">
-                        <Label>Year</Label>
-                        <Input type="text" placeholder=""></Input>
-                    </div>
-
-                </div>
-                <div className="grid w-full items-center gap-1.5">
-                    <Label>Hostel Name</Label>
-                    <Input type="text" placeholder=""></Input>
                 </div>
                 <div className="grid w-full items-center gap-1.5">
                     <Label>Password</Label>
-                    <Input type="password" placeholder=""></Input>
+                    <Input onChange={(e)=>{
+                        setPassword(e.target.value);
+                    }} type="password" placeholder=""></Input>
                 </div>
                 <div className="grid w-full items-center gap-1.5">
-                    <Button>SignUp</Button>
+                    <Button onClick={ async ()=>{
+                        const response = await axios.post("http://localhost:8080/students/signup",{
+                            username,
+                            password,
+                            name,
+                            branch
+                        },{headers:{
+                            'Content-Type':'application/x-ww-form-urlencoded'
+                        }})
+                        console.log(response);
+                        navigate("/dashboard");
+                    }}>SignUp</Button>
                 </div>
                 <BottomWarning label={"Already have an account?"} buttonText={"Sign In"} to={"/signin"} />
             </div>
