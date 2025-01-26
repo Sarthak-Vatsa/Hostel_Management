@@ -26,17 +26,17 @@ public class AdminController
         }
     }
 
-    @PostMapping("/signin")
-    public ResponseEntity<String> signin(@RequestBody Admin admin)
-    {
-        boolean exists = service.authenticateAdmin(admin.getEmail(), admin.getPassword());
-        if(exists){
-            return ResponseEntity.ok("Admin Login Successful!");
-        }
-        else{
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Credentials");
-        }
-    }
+//    @PostMapping("/signin")
+//    public ResponseEntity<String> signin(@RequestBody Admin admin)
+//    {
+//        boolean exists = service.authenticateAdmin(admin.getEmail(), admin.getPassword());
+//        if(exists){
+//            return ResponseEntity.ok("Admin Login Successful!");
+//        }
+//        else{
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Credentials");
+//        }
+//    }
 
     @PostMapping("/addNotice")
     public ResponseEntity<String> addNotice(@RequestBody Notice notice)
