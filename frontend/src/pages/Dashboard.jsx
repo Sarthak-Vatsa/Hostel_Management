@@ -22,15 +22,29 @@ const Dashboard = () => {
                 </div>
             </div>
         </div>
-        <div className='border-2 border-black rounded-md bg-yellow-200 m-2'>
+        <div className='border-2 border-black rounded-md bg-yellow-200 m-4 shadow-xl'>
             <div className='border-b-2 border-black pt-2 pl-2'>
                 <h2 className='text-lg font-semibold'>Notification</h2>
             </div>
-            <Notification title="This is the Notification"></Notification>
-            <Notification title="This is the Notification"></Notification>
-            <Notification title="This is the Notification"></Notification>
-            <Notification title="This is the Notification"></Notification>
-            <Notification title="This is the Notification"></Notification>
+            <div className='max-h-64 overflow-y-auto'>
+                <Notification title="This is the Notification"></Notification>
+                <Notification title="This is the Notification"></Notification>
+                <Notification title="This is the Notification"></Notification>
+                <Notification title="This is the Notification"></Notification>
+                <Notification title="This is the Notification"></Notification>
+            </div>
+        </div>
+        <div className='border-2 border-black rounded-md bg-yellow-200 m-4 shadow-xl'>
+            <div className='border-b-2 border-black pt-2 pl-2'>
+                <h2 className='text-lg font-semibold'>Complaints</h2>
+            </div>
+            <div className='max-h-64 overflow-y-auto'>
+                <Notification title="This is the Notification"></Notification>
+                <Notification title="This is the Notification"></Notification>
+                <Notification title="This is the Notification"></Notification>
+                <Notification title="This is the Notification"></Notification>
+                <Notification title="This is the Notification"></Notification>
+            </div>
         </div>
       </div>
     </div>
