@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
@@ -6,8 +6,15 @@ import { FaBox, FaCog, FaShoppingCart, FaUsers } from 'react-icons/fa'
 import Notification from '../components/Notification'
 
 const Dashboard = () => {
+    const [notification,setNotification] = useState([]);
+
+    useEffect(async ()=>{
+        const resp = await axios.get("http://localhost:8000/students/viewNotices");
+        console.log(resp);
+    },[notification]);
+    
   return (
-    <div className='flex bg-yellow-50'>
+    <div className='flex'>
       <Sidebar />
       <div className='grow ml-16 md:ml-64 h-full lg:h-screen text-gray-900'>
         <Navbar />
@@ -22,7 +29,7 @@ const Dashboard = () => {
                 </div>
             </div>
         </div>
-        <div className='border-2 border-black rounded-md bg-yellow-200 m-4 shadow-xl'>
+        <div className='border-2 border-black rounded-md m-4 shadow-xl'>
             <div className='border-b-2 border-black pt-2 pl-2'>
                 <h2 className='text-lg font-semibold'>Notification</h2>
             </div>
@@ -34,7 +41,7 @@ const Dashboard = () => {
                 <Notification title="This is the Notification"></Notification>
             </div>
         </div>
-        <div className='border-2 border-black rounded-md bg-yellow-200 m-4 shadow-xl'>
+        <div className='border-2 border-black rounded-md m-4 shadow-xl'>
             <div className='border-b-2 border-black pt-2 pl-2'>
                 <h2 className='text-lg font-semibold'>Complaints</h2>
             </div>

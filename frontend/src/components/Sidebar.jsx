@@ -3,7 +3,7 @@ import { FaTachometerAlt, FaShoppingCart, FaUsers, FaUser, FaBox, FaCog } from '
 
 const Sidebar = () => {
 	return (
-		<div className="bg-yellow-200 text-gray-900 h-screen px-4 fixed w-16 md:w-64 border-r-2 border-black">
+		<div className="text-gray-900 h-screen px-4 fixed w-16 md:w-64 border-r-2 border-black">
 			<h1 className='text-2xl font-bold hidden md:block mt-4 text-center italic'>Hostel Management</h1>
 			<ul className='flex flex-col mt-5 text-xl'>
 				<li className='flex items-center py-3 px-2 space-x-4 hover:rounded hover:cursor-pointer 
