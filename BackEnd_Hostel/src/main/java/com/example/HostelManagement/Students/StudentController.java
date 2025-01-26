@@ -29,6 +29,7 @@ public class StudentController
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody Student stu)
     {
+        System.out.println(stu.getRollNo());
         boolean exists = service.registerStudent(stu);
 
         if(exists) {

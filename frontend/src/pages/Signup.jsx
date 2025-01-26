@@ -8,7 +8,7 @@ import axios from 'axios'
 
 function Signup() {
     const [name,setName] = useState("");
-    const [username,setUsername] = useState("");
+    const [rollNo,setUsername] = useState("");
     const [password,setPassword] = useState("");
     const [branch,setBranch] = useState("");
     const navigate = useNavigate();
@@ -48,12 +48,12 @@ function Signup() {
                 <div className="grid w-full items-center gap-1.5">
                     <Button onClick={ async ()=>{
                         const response = await axios.post("http://localhost:8080/students/signup",{
-                            username,
+                            rollNo,
                             password,
                             name,
                             branch
                         },{headers:{
-                            'Content-Type':'application/x-ww-form-urlencoded'
+                            'Content-Type':'application/json'
                         }})
                         console.log(response);
                         navigate("/dashboard");
