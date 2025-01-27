@@ -8,11 +8,27 @@ import axios from 'axios'
 
 const Dashboard = () => {
     const [notification,setNotification] = useState([]);
+    console.log(notification)
 
-    useEffect(async ()=>{
-        const resp = await axios.get("http://localhost:8000/students/viewNotices");
-        console.log(resp);
-    },[]);
+    useEffect(()=>{
+        const fetchNotices = async () => {
+                try {
+                    const resp = await axios.get("http://localhost:8080/students/viewNotices", {
+                        withCredentials: true, // Ensures cookies are sent
+                        headers: {
+                            'Accept': 'application/json',
+                        },
+                    });
+                    console.log(resp.data);
+                    setNotification(resp.data)
+                } catch (error) {
+                    console.error("Error fetching notices:", error);
+                }
+            };
+            fetchNotices()
+
+        },[])
+
 
   return (
     <div className='flex'>

@@ -27,6 +27,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         // Set custom session attributes
         session.setAttribute("rollNo", user.getUsername());
 
+        // Set custom session timeout (in seconds)
+        session.setMaxInactiveInterval(1800); // 1800 seconds = 30 minutes
+
         System.out.println("Login Success");
 
         // Redirect to a default URL after login
