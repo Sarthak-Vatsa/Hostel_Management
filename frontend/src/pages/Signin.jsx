@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Signin() {
-    const [username, setUsername] = useState("");
+    const [rollNo, setrollNo] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
   return (
@@ -20,7 +20,7 @@ function Signin() {
                 <div className="grid w-full items-center gap-1.5">
                     <Label>Roll No</Label>
                     <Input onChange={(e)=>{
-                        setUsername(e.target.value);
+                        setrollNo(e.target.value);
                     }} type="text" placeholder=""></Input>
                 </div>
                 <div className="grid w-full items-center gap-1.5">
@@ -31,11 +31,13 @@ function Signin() {
                 </div>
                 <div className="grid w-full items-center gap-1.5">
                     <Button onClick={ async ()=>{
+                        axios.defaults.withCredentials=true;
                         const response = await axios.post("http://localhost:8080/students/signin",{
-                            username,
+                            rollNo,
                             password
                         },{headers:{
-                            'Content-Type':'application/x-www-form-urlencoded'
+                            withCredentials: true, // Ensures cookies are sent
+                            'Content-Type':'application/json'
                         }})
                         console.log(response);
                         navigate("/dashboard");
