@@ -27,8 +27,9 @@ public class Student
 //    //login info
 //    private String email;
     private String password;
+    private String role;
 
-    //payment id not required -> since then we might have multi valued attributes in our table
+//payment id not required -> since then we might have multi valued attributes in our table
 //    @OneToOne
 //    @JoinColumn(name = "payment_id") // Creates a foreign key column 'payment_id' in 'students' table
 //    private Payment payment;
@@ -38,6 +39,13 @@ public class Student
 //    @JoinColumn(name = "complaint_id") // Creates a foreign key column 'complaint_id' in 'students' table
 //    private Complaint complaint;
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public Long getRollNo() {
         return rollNo;

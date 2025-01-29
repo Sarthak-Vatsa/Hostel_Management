@@ -16,18 +16,18 @@ public class StudentService
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    private String hashPassword(String password){
-        // Simple hash based on shifting and XORing byte values
-        long hash = 0;
-
-        for (int i = 0; i < password.length(); i++) {
-            char c = password.charAt(i);
-            hash ^= ((long) c << (i % 64)); // Shift and XOR character codes
-        }
-
-        // Convert long hash to hexadecimal string for easy reading
-        return Long.toHexString(hash);
-    }
+//    private String hashPassword(String password){
+//        // Simple hash based on shifting and XORing byte values
+//        long hash = 0;
+//
+//        for (int i = 0; i < password.length(); i++) {
+//            char c = password.charAt(i);
+//            hash ^= ((long) c << (i % 64)); // Shift and XOR character codes
+//        }
+//
+//        // Convert long hash to hexadecimal string for easy reading
+//        return Long.toHexString(hash);
+//    }
 
     public boolean registerStudent(Student stu)
     {
@@ -44,11 +44,15 @@ public class StudentService
         return false;
     }
 
-    public boolean authenticateStudent(Long rollNo, String password)
+    public Student authenticateStudent(Long rollNo, String password)
     {
         Optional<Student> obj = repo.findByrollNo(rollNo);
         //String hashedPass = encoder.encode(password); -> wrong as bcrypt generates new salt everytime - even for the same password
-        return obj.isPresent() && encoder.matches(password, obj.get().getPassword());
+        if( obj.isPresent() && encoder.matches(password, obj.get().getPassword()) ){
+            return obj.get();
+        }
+
+        return null;
     }
 
     public Student getStudentDetails(Long rollNo)

@@ -26,18 +26,18 @@ public class AdminService {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    private String hashPassword(String password){
-        // Simple hash based on shifting and XORing byte values
-        long hash = 0;
-
-        for (int i = 0; i < password.length(); i++) {
-            char c = password.charAt(i);
-            hash ^= ((long) c << (i % 64)); // Shift and XOR character codes
-        }
-
-        // Convert long hash to hexadecimal string for easy reading
-        return Long.toHexString(hash);
-    }
+//    private String hashPassword(String password){
+//        // Simple hash based on shifting and XORing byte values
+//        long hash = 0;
+//
+//        for (int i = 0; i < password.length(); i++) {
+//            char c = password.charAt(i);
+//            hash ^= ((long) c << (i % 64)); // Shift and XOR character codes
+//        }
+//
+//        // Convert long hash to hexadecimal string for easy reading
+//        return Long.toHexString(hash);
+//    }
 
     public boolean registerAdmin(Admin admin)
     {
@@ -51,10 +51,15 @@ public class AdminService {
         return false;
     }
 
-    public boolean authenticateAdmin(String email, String password)
+    public Admin authenticateAdmin(String email, String password)
     {
         Optional<Admin> obj = repo.findByEmail(email);
-        return obj.isPresent() && encoder.matches(password, obj.get().getPassword());
+        if( obj.isPresent() && encoder.matches(password, obj.get().getPassword()) ){
+            return obj.get();
+        }
+        else{
+            return null;
+        }
     }
 
     public void addNotice(Notice notice)

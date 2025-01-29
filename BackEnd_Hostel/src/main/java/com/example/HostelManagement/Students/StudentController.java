@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/students")
@@ -40,24 +41,28 @@ public class StudentController
         }
     }
 
-//    @PostMapping("/signin")
-//    public ResponseEntity<String> signin( @RequestBody Student stu, HttpSession session)
-//    {
-//        boolean exists = service.authenticateStudent(stu.getRollNo(), stu.getPassword());
-//        if(exists){
-//            //store the rollNo in the current session since we will be requiring it to fetch complaints for logged in user
-//            session.setAttribute("rollNo", stu.getRollNo());
-//            return ResponseEntity.ok("Login Successful!");
-//        }
-//        else{
-//            return ResponseEntity.status(200).body("Invalid Credentials");
-//        }
-//    }
+    @PostMapping("/signin")
+    public ResponseEntity<Map<String, String>> signin( @RequestBody Student stu, HttpSession session)
+    {
+        System.out.println("signin called");
+        Student student = service.authenticateStudent(stu.getRollNo(), stu.getPassword());
+        if(student != null){
+            //store the rollNo in the current session since we will be requiring it to fetch complaints for logged in user
+            session.setAttribute("rollNo", stu.getRollNo());
+            return ResponseEntity.ok(Map.of(
+                    "message", "Login Successful!",
+                    "rollNo", String.valueOf(stu.getRollNo()),  // Convert to String if needed
+                    "role", student.getRole()
+            ));
+        }
+        else{
+            return ResponseEntity.ok(Map.of("message", "Invalid Credentials"));
+        }
+    }
 
-//    @GetMapping("/logout")
-//    public ResponseEntity<String> logout(HttpSession session, HttpServletResponse response) throws IOException {
-//        session.invalidate();
-//        //response.sendRedirect("/signup");
-//        return ResponseEntity.ok("Logged Out Successfully");
-//    }
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpSession session) {
+        session.invalidate(); // Invalidate session
+        return ResponseEntity.ok("Logged out successfully!");
+    }
 }

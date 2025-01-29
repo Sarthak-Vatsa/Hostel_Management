@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public class StudentPrincipal implements UserDetails
 {
@@ -14,14 +15,15 @@ public class StudentPrincipal implements UserDetails
 
     StudentPrincipal(Student stu)
     {
-        System.out.println(stu.getPassword() + "hhhhhhhhh");
+        System.out.println(stu.getPassword() + " -> stu's password");
         student = stu;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("STUDENT"));
+        return List.of(new SimpleGrantedAuthority("ROLE_STUDENT"));
     }
+
 
     @Override
     public String getPassword() {
