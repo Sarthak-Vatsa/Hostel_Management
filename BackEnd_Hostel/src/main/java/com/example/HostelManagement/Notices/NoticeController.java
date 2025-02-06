@@ -16,10 +16,10 @@ public class NoticeController
     private NoticeService service;
 
     @GetMapping(value = "/viewNotices", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Notice showNotices()
+    public List<Notice> showNotices()
     {
         List<Notice> notices =  service.showNotices();
-        System.out.println(notices.get(0).getContent());
-        return notices.get(0);
+        //System.out.println(notices.get(0).getContent());
+        return notices;
     }
 }

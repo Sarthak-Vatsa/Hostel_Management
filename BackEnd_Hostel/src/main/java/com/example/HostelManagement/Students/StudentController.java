@@ -30,6 +30,7 @@ public class StudentController
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody Student stu)
     {
+        System.out.println("sign up called");
         System.out.println(stu.getRollNo());
         boolean exists = service.registerStudent(stu);
 
@@ -55,11 +56,13 @@ public class StudentController
             return ResponseEntity.ok(Map.of(
                     "message", "Login Successful!",
                     "rollNo", String.valueOf(stu.getRollNo()),  // Convert to String if needed
-                    "role", student.getRole()
+                    "role", "STUDENT"
             ));
         }
         else{
-            return ResponseEntity.ok(Map.of("message", "Invalid Credentials"));
+            return ResponseEntity.status(401).body(Map.of(
+                    "message", "Invalid Credentials"
+            ));
         }
     }
 
