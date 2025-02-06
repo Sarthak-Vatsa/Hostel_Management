@@ -8,7 +8,6 @@ import axios from 'axios'
 
 const Dashboard = () => {
     const [notification,setNotification] = useState([]);
-    console.log(notification)
 
     useEffect(()=>{
         const fetchNotices = async () => {
@@ -20,7 +19,8 @@ const Dashboard = () => {
                         },
                     });
                     console.log(resp.data);
-                    setNotification(resp.data);
+                    setNotification([...notification,resp.data]);
+                    // console.log(notification);
                 } catch (error) {
                     console.error("Error fetching notices:", error);
                 }
@@ -29,7 +29,7 @@ const Dashboard = () => {
 
         },[])
 
-
+    console.log(notification);
   return (
     <div className='flex'>
       <Sidebar />
@@ -57,8 +57,10 @@ const Dashboard = () => {
                 <Notification title="This is the Notification"></Notification>
                 <Notification title="This is the Notification"></Notification> */}
                 {
+                    
                     notification.map((notice)=>{
-                        
+                        console.log(notice.id);
+                        <Notification key={notice.id} title={notice.content}></Notification>
                     })
                 }
             </div>
