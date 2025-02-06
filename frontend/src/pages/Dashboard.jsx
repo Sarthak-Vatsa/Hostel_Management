@@ -51,11 +51,11 @@ const Dashboard = () => {
                 <h2 className='text-lg font-semibold'>Notification</h2>
             </div>
             <div className='max-h-64 overflow-y-auto'>
-                {/* <Notification title="This is the Notification"></Notification>
                 <Notification title="This is the Notification"></Notification>
                 <Notification title="This is the Notification"></Notification>
                 <Notification title="This is the Notification"></Notification>
-                <Notification title="This is the Notification"></Notification> */}
+                <Notification title="This is the Notification"></Notification>
+                <Notification title="This is the Notification"></Notification>
                 {
                     
                     notification.map((notice)=>{
