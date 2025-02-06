@@ -19,7 +19,7 @@ const Dashboard = () => {
                         },
                     });
                     console.log(resp.data);
-                    setNotification([...notification,resp.data]);
+                    setNotification(resp.data);
                     // console.log(notification);
                 } catch (error) {
                     console.error("Error fetching notices:", error);
@@ -51,16 +51,20 @@ const Dashboard = () => {
                 <h2 className='text-lg font-semibold'>Notification</h2>
             </div>
             <div className='max-h-64 overflow-y-auto'>
+                {/* <Notification title="This is the Notification"></Notification>
                 <Notification title="This is the Notification"></Notification>
                 <Notification title="This is the Notification"></Notification>
                 <Notification title="This is the Notification"></Notification>
-                <Notification title="This is the Notification"></Notification>
-                <Notification title="This is the Notification"></Notification>
+                <Notification title="This is the Notification"></Notification> */}
                 {
                     
                     notification.map((notice)=>{
-                        console.log(notice.id);
-                        <Notification key={notice.id} title={notice.content}></Notification>
+                        // console.log(notice.id);
+                        return (
+                            <div>
+                                <Notification title={notice.content}></Notification>
+                            </div>
+                        )
                     })
                 }
             </div>
