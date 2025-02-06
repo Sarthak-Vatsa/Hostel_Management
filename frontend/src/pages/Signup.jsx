@@ -11,6 +11,7 @@ function Signup() {
     const [rollNo,setUsername] = useState("");
     const [password,setPassword] = useState("");
     const [branch,setBranch] = useState("");
+    const [role,setRole] = useState("");
     const navigate = useNavigate();
   return (
     <div className='bg-yellow-200 flex h-screen justify-center'>
@@ -39,6 +40,14 @@ function Signup() {
                         }} type="text" placeholder=""></Input>
                     </div>
                 </div>
+                <div className='flex space-x-4'>
+                    <div className="grid w-full items-center gap-1.5">
+                        <Label>Role</Label>
+                        <Input onChange={(e)=>{
+                            setRole(e.target.value);
+                        }} type="text" placeholder=""></Input>
+                    </div>
+                </div>
                 <div className="grid w-full items-center gap-1.5">
                     <Label>Password</Label>
                     <Input onChange={(e)=>{
@@ -51,7 +60,8 @@ function Signup() {
                             rollNo,
                             password,
                             name,
-                            branch
+                            branch,
+                            role
                         },{headers:{
                             'Content-Type':'application/json'
                         }})
