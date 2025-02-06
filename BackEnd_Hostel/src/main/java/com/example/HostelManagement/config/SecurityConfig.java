@@ -34,36 +34,6 @@ public class SecurityConfig {
     @Autowired
     private SessionAuthFilter sessionAuthFilter;
 
-//    @Autowired
-//    private CustomAuthenticationSuccessHandler studentSuccessHandler;
-//
-//    @Autowired
-//    private AdminAuthenticationSuccessHandler adminSuccessHandler;
-
-//    @Bean
-//    public AuthenticationProvider studentAuthProvider() {
-//        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-//        provider.setUserDetailsService(studentDetailsService);
-//        provider.setPasswordEncoder(bCryptPasswordEncoder());
-//        return provider;
-//    }
-//
-//    @Bean
-//    public AuthenticationProvider adminAuthProvider() {
-//        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-//        provider.setUserDetailsService(adminDetailsService);
-//        provider.setPasswordEncoder(bCryptPasswordEncoder());
-//        return provider;
-//    }
-//
-//    @Bean
-//    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-//        return http.getSharedObject(AuthenticationManagerBuilder.class)
-//                .authenticationProvider(studentAuthProvider())
-//                .authenticationProvider(adminAuthProvider())
-//                .build();
-//    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
