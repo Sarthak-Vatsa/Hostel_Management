@@ -40,7 +40,7 @@ function Signin() {
                             'Content-Type':'application/json'
                         }})
                         console.log(response);
-                        navigate("/dashboard");
+                        navigate("/dashboard");// for // for app //disable whefor app
                     }}>SignIn</Button>
                 </div>
                 <BottomWarning label={"Doesn't have an account?"} buttonText={"Sign Up"} to={"/signup"} />
