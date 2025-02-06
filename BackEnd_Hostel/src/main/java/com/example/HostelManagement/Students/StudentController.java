@@ -45,6 +45,9 @@ public class StudentController
     public ResponseEntity<Map<String, String>> signin( @RequestBody Student stu, HttpSession session)
     {
         System.out.println("signin called");
+        
+        System.out.println(stu.getRollNo());
+        
         Student student = service.authenticateStudent(stu.getRollNo(), stu.getPassword());
         if(student != null){
             //store the rollNo in the current session since we will be requiring it to fetch complaints for logged in user
