@@ -23,13 +23,13 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    @Qualifier("myUserDetailsService") // Handles students
-    private UserDetailsService studentDetailsService;
-
-    @Autowired
-    @Qualifier("adminDetailsService") // Handles admins
-    private UserDetailsService adminDetailsService;
+//    @Autowired
+//    @Qualifier("myUserDetailsService") // Handles students
+//    private UserDetailsService studentDetailsService;
+//
+//    @Autowired
+//    @Qualifier("adminDetailsService") // Handles admins
+//    private UserDetailsService adminDetailsService;
 
     @Autowired
     private SessionAuthFilter sessionAuthFilter;
@@ -70,15 +70,18 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(request -> {
                     var config = new org.springframework.web.cors.CorsConfiguration();
                     config.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173")); // React frontend URL
+                    //config.setAllowedOrigins(List.of("*")); // for app
                     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-                    config.setAllowedHeaders(List.of("*"));
-                    config.setAllowCredentials(true);
+                    config.setAllowedHeaders(List.of("*")); //disable for app
+                    config.setAllowCredentials(true); //disable for app
                     return config;
                 }))
                 .csrf(csrf -> csrf.disable())// Disable CSRF for simplicity
                 .addFilterBefore(sessionAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .securityMatcher("/**") // Ensures Spring Security manages all routes without interfering
-                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll()); // Allow all requests (NO auth control)
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll()); // Allow all requests (NO auth control)
+                //.oauth2Login(Customizer.withDefaults());
 //                .logout(logout -> logout
 //                        .logoutUrl("/students/logout")  // Ensure this matches your controller method
 //                        .logoutSuccessUrl("/students/signin")
