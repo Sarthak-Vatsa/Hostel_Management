@@ -32,7 +32,7 @@ public class SessionAuthFilter implements Filter
             filterChain.doFilter(request, response);
         }
         else{
-            //System.out.println("inside else");
+            System.out.println("inside else");
             response.sendError(401);
         }
     }
