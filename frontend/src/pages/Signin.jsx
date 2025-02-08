@@ -5,11 +5,14 @@ import { Button } from '../components/ui/button'
 import { BottomWarning } from '../components/BottomWarning'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setUser } from '@/redux/authSlice'
 
 function Signin() {
     const [rollNo, setrollNo] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const dispatch = useDispatch();
   return (
     <div className='bg-yellow-200 flex h-screen justify-center'>
         <div className='h-full flex flex-col justify-center max-w-3xl w-full items-center'>
@@ -39,7 +42,7 @@ function Signin() {
                             withCredentials: true, // Ensures cookies are sent
                             'Content-Type':'application/json'
                         }})
-                        console.log(response);
+                        dispatch(setUser(response.data));
                         navigate("/dashboard");// for // for app //disable whefor app
                     }}>SignIn</Button>
                 </div>
