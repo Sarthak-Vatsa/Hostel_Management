@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/students")
@@ -15,12 +16,16 @@ public class ComplaintController
     ComplaintService service;
 
     @PostMapping("/registerComplaint")
-    public ResponseEntity<String> registerComplaint(@RequestBody Complaint complaint, HttpSession session)
+    public ResponseEntity<Map<String, String>> registerComplaint(@RequestBody Complaint complaint, HttpSession session)
     {
         Long rollNo = (Long) session.getAttribute("rollNo");
 
         service.addComplaint(rollNo, complaint);
-        return ResponseEntity.ok("Complaint added successfully!!");
+        return ResponseEntity.ok(
+                Map.of(
+                        "message", "Complaint Registered Successfully"
+                )
+        );
     }
 
     @GetMapping("/viewComplaints")

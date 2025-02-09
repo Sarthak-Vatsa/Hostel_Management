@@ -67,8 +67,11 @@ public class StudentController
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<String> logout(HttpSession session) {
+    public ResponseEntity<Map<String, String>> logout(HttpSession session) {
+        System.out.println("Logout Reached");
         session.invalidate(); // Invalidate session
-        return ResponseEntity.ok("Logged out successfully!");
+        return ResponseEntity.ok(Map.of(
+                "message", "Logged out Successfully"
+        ));
     }
 }

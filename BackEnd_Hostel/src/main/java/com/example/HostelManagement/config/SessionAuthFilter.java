@@ -19,7 +19,7 @@ public class SessionAuthFilter implements Filter
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         String url = request.getRequestURI();
-
+        System.out.println(url);
         if(url.equals("/students/signin") || url.equals("/students/signup") || url.equals("/admin/signup") || url.equals("/admin/signin")){
             filterChain.doFilter(request, response);
             //System.out.println("Hello doston");
@@ -32,7 +32,7 @@ public class SessionAuthFilter implements Filter
             filterChain.doFilter(request, response);
         }
         else{
-            //System.out.println("inside else");
+            System.out.println("inside else");
             response.sendError(401);
         }
     }
