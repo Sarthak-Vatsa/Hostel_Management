@@ -41,7 +41,7 @@ public class SecurityConfig {
                     var config = new org.springframework.web.cors.CorsConfiguration();
                     config.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173")); // React frontend URL
                     //config.setAllowedOrigins(List.of("*")); // for app
-                    config.setAllowedOrigins(List.of("*"));
+                    // config.setAllowedOrigins(List.of("*"));
                     config.setAllowCredentials(false);
                     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                     config.setAllowedHeaders(List.of("*")); //disable for app

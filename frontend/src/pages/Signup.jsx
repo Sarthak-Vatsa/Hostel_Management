@@ -5,6 +5,7 @@ import { Button } from '../components/ui/button'
 import { BottomWarning } from '../components/BottomWarning'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Navbar from '@/components/Navbar'
 
 function Signup() {
     const [name,setName] = useState("");
@@ -14,9 +15,11 @@ function Signup() {
     const [role,setRole] = useState("");
     const navigate = useNavigate();
   return (
-    <div className='bg-yellow-200 flex h-screen justify-center'>
+    <div>
+        <Navbar></Navbar>
+    <div className=' flex h-screen justify-center'>
         <div className='h-full flex flex-col justify-center max-w-3xl w-full items-center'>
-            <div className='border-black border-2 h-min flex flex-col p-4 space-y-8 max-w-xl w-full bg-white shadow-2xl rounded-lg'>
+            <div className='border-gray border-2 h-min flex flex-col p-4 space-y-8 max-w-xl w-full bg-white shadow-2xl rounded-lg'>
                 <div className='text-center'>
                     <h1 className='text-3xl font-semibold'>Sign Up</h1>
                 </div>
@@ -72,6 +75,7 @@ function Signup() {
                 <BottomWarning label={"Already have an account?"} buttonText={"Sign In"} to={"/signin"} />
             </div>
         </div>
+    </div>
     </div>
   )
 }

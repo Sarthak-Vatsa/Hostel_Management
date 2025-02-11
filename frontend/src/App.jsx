@@ -5,6 +5,9 @@ import Home from "./pages/Home"
 import Signin from "./pages/Signin"
 import Signup from "./pages/Signup"
 import Dashboard from "./pages/dashboard"
+import RegisterComplaint from "./components/RegisterComplaint"
+import ComplaintSetup from "./components/ComplaintSetup"
+import Profile from "./components/Profile"
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
         <Route path="/signin" element={<Signin></Signin>}></Route>
         <Route path="/signup" element={<Signup></Signup>}></Route>
         <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
+        <Route path="/complaint" element={<RegisterComplaint></RegisterComplaint>}></Route>
+        <Route path="/register/complaint" element={<ComplaintSetup></ComplaintSetup>}></Route>
+        <Route path="/profile" element={<Profile></Profile>}></Route>
       </Routes>
     </BrowserRouter>
   )
