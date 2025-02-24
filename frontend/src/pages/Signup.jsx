@@ -89,7 +89,7 @@ function Signup() {
                             'Content-Type':'application/json'
                         }})
                         console.log(response);
-                        navigate("/dashboard");
+                        navigate("/signin");
                     }}>SignUp</Button>
                 </div>
                 <BottomWarning label={"Already have an account?"} buttonText={"Sign In"} to={"/signin"} />
