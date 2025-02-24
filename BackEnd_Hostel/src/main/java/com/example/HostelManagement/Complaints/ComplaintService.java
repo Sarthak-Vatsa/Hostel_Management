@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +26,10 @@ public class ComplaintService
         Student toAdd = stu.get();
         complaint.setStudent(toAdd);
         complaint.setDate(LocalDate.now().toString());
-        complaint.setTime(LocalTime.now().toString());
+        complaint.setTime(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
+
+        complaint.setRoom(stu.get().getRoom());
+        complaint.setMobileNumber(stu.get().getMobileNumber());
         repo.save(complaint);
     }
 

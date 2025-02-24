@@ -1,14 +1,10 @@
 package com.example.HostelManagement.Students;
 
-import com.example.HostelManagement.Notices.Notice;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -43,7 +39,7 @@ public class StudentController
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<Map<String, String>> signin( @RequestBody Student stu, HttpSession session)
+    public ResponseEntity<Map<String, Object>> signin(@RequestBody Student stu, HttpSession session)
     {
         System.out.println("signin called");
         
@@ -55,8 +51,7 @@ public class StudentController
             session.setAttribute("rollNo", stu.getRollNo());
             return ResponseEntity.ok(Map.of(
                     "message", "Login Successful!",
-                    "rollNo", String.valueOf(stu.getRollNo()),  // Convert to String if needed
-                    "role", "STUDENT"
+                    "student", student
             ));
         }
         else{
@@ -69,6 +64,7 @@ public class StudentController
     @PostMapping("/logout")
     public ResponseEntity<Map<String, String>> logout(HttpSession session) {
         System.out.println("Logout Reached");
+        System.out.println(session.getMaxInactiveInterval());
         session.invalidate(); // Invalidate session
         return ResponseEntity.ok(Map.of(
                 "message", "Logged out Successfully"

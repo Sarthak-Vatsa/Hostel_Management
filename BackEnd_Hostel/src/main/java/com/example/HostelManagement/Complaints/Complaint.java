@@ -23,14 +23,23 @@ public class Complaint
     private String date;
     private String time;
 
-    private Long mobNo;
+    private String room;
+    private Long mobileNumber;
 
-    public Long getMobNo() {
-        return mobNo;
+    public String getRoom() {
+        return room;
     }
 
-    public void setMobNo(Long mobNo) {
-        this.mobNo = mobNo;
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    public Long getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(Long mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public Long getId() {

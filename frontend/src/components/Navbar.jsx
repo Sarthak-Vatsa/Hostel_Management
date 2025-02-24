@@ -59,15 +59,16 @@ const Navbar = () => {
 
     const logoutHandler = async ()=>{
         try {
-            const res = await axios.get("http://localhost:8080/students/logout",{
+            const res = await axios.post("http://localhost:8080/students/logout",{
                 withCredentials:true
             });
-            // console.log(res);
-            if(res.data.sucess){   
-                dispatch(setUser(null));
-                navigate("/");
-                // toast.success(res.data.message);
-            }
+            // // console.log(res);
+            // if(res.data.sucess){   
+            //     dispatch(setUser(null));
+            //     navigate("/");
+            //     // toast.success(res.data.message);
+            // }
+            dispatch(setUser(null));
         } catch (error) {
             console.log(error);
             // toast.error(error.response.data.message);
@@ -90,9 +91,9 @@ const Navbar = () => {
                             </>
                         ):(
                             <>
-                                <li><Link to='/'>Home</Link></li>
+                                <li><Link to='/dashboard'>Home</Link></li>
                                 <li><Link to='/'>Notification</Link></li>
-                                <li><Link to='/'>Register Complaint</Link></li>
+                                <li><Link to='/complaint'>Register Complaint</Link></li>
                             </>
                         )
                     }
@@ -117,7 +118,7 @@ const Navbar = () => {
                                         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                                     </Avatar>
                                     <div>
-                                        <h4 className="font-medium"></h4>
+                                        <h4 className="font-medium">{user?.rollNo}</h4>
                                         <p className="text-sm text-muted-foreground"></p>
                                     </div>
                                 </div>
