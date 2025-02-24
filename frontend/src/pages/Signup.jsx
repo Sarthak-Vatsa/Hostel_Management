@@ -14,7 +14,7 @@ function Signup() {
     const [branch,setBranch] = useState("");
     const [role,setRole] = useState("");
     const [room,setRoom] = useState("");
-    const [mobileNo,setMobileNo] = useState("");
+    const [mobileNumber,setMobileNo] = useState("");
     const navigate = useNavigate();
   return (
     <div>
@@ -84,12 +84,12 @@ function Signup() {
                             branch,
                             role,
                             room,
-                            mobileNo
+                            mobileNumber
                         },{headers:{
                             'Content-Type':'application/json'
                         }})
                         console.log(response);
-                        navigate("/dashboard");
+                        navigate("/signin");
                     }}>SignUp</Button>
                 </div>
                 <BottomWarning label={"Already have an account?"} buttonText={"Sign In"} to={"/signin"} />

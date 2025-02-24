@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import Navbar from './Navbar';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
+import axios from 'axios';
 
 const RegisterComplaint = () => {
     const [input, setInput] = useState("");
@@ -24,7 +25,7 @@ const RegisterComplaint = () => {
                         const response = await axios.post(
                             "http://localhost:8080/students/registerComplaint",
                             {
-                                input
+                                type:input
                             },
                             {
                               headers: {
