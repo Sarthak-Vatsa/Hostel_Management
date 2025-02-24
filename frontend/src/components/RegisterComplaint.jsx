@@ -14,13 +14,27 @@ const RegisterComplaint = () => {
         <div>
             <Navbar />
             <div className='max-w-6xl mx-auto my-10'>
-                <div className='flex items-center justify-between my-5'>
+                <div className='flex items-center justify-between my-5 gap-10'>
                     <Input
-                        className="w-fit"
-                        placeholder="Filter by name"
+                        className=""
+                        placeholder="Description"
                         onChange={(e) => setInput(e.target.value)}
                     />
-                    <Button onClick={()=>{navigate('/register/complaint')}}>Register</Button>
+                    <Button onClick={async ()=>{
+                        const response = await axios.post(
+                            "http://localhost:8080/students/registerComplaint",
+                            {
+                                input
+                            },
+                            {
+                              headers: {
+                                withCredentials: true, // Ensures cookies are sent
+                                "Content-Type": "application/json",
+                              },
+                            }
+                          );
+                          console.log(response);
+                    }}>Register</Button>
                 </div>
             </div>
         </div>

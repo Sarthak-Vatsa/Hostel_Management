@@ -13,6 +13,8 @@ function Signup() {
     const [password,setPassword] = useState("");
     const [branch,setBranch] = useState("");
     const [role,setRole] = useState("");
+    const [room,setRoom] = useState("");
+    const [mobileNo,setMobileNo] = useState("");
     const navigate = useNavigate();
   return (
     <div>
@@ -51,6 +53,22 @@ function Signup() {
                         }} type="text" placeholder=""></Input>
                     </div>
                 </div>
+                <div className='flex space-x-4'>
+                    <div className="grid w-full items-center gap-1.5">
+                        <Label>Room</Label>
+                        <Input onChange={(e)=>{
+                            setRoom(e.target.value);
+                        }} type="text" placeholder=""></Input>
+                    </div>
+                </div>
+                <div className='flex space-x-4'>
+                    <div className="grid w-full items-center gap-1.5">
+                        <Label>Phone Number</Label>
+                        <Input onChange={(e)=>{
+                            setMobileNo(e.target.value);
+                        }} type="text" placeholder=""></Input>
+                    </div>
+                </div>
                 <div className="grid w-full items-center gap-1.5">
                     <Label>Password</Label>
                     <Input onChange={(e)=>{
@@ -64,7 +82,9 @@ function Signup() {
                             password,
                             name,
                             branch,
-                            role
+                            role,
+                            room,
+                            mobileNo
                         },{headers:{
                             'Content-Type':'application/json'
                         }})
