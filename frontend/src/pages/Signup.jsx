@@ -14,7 +14,7 @@ function Signup() {
     const [branch,setBranch] = useState("");
     const [role,setRole] = useState("");
     const [room,setRoom] = useState("");
-    const [mobileNo,setMobileNo] = useState("");
+    const [mobileNumber,setMobileNumber] = useState("");
     const navigate = useNavigate();
   return (
     <div>
@@ -65,7 +65,7 @@ function Signup() {
                     <div className="grid w-full items-center gap-1.5">
                         <Label>Phone Number</Label>
                         <Input onChange={(e)=>{
-                            setMobileNo(e.target.value);
+                            setMobileNumber(e.target.value);
                         }} type="text" placeholder=""></Input>
                     </div>
                 </div>
@@ -84,7 +84,7 @@ function Signup() {
                             branch,
                             role,
                             room,
-                            mobileNo
+                            mobileNumber
                         },{headers:{
                             'Content-Type':'application/json'
                         }})
