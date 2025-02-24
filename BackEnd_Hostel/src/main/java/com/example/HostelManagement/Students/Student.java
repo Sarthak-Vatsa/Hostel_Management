@@ -29,7 +29,7 @@ public class Student
     private String password;
     private String role;
 
-//payment id not required -> since then we might have multi valued attributes in our table
+//payment id not required -> since then we might have multivalued attributes in our table
 //    @OneToOne
 //    @JoinColumn(name = "payment_id") // Creates a foreign key column 'payment_id' in 'students' table
 //    private Payment payment;
