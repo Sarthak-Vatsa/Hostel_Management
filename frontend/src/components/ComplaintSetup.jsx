@@ -25,10 +25,9 @@ const ComplaintSetup = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("name", input.name);
-        formData.append("description", input.description);
-        formData.append("website", input.website);
-        formData.append("location", input.location);
+        formData.append("type", input.description);
+        formData.append("mobNo", input.website);
+        formData.append("room", input.location);
         try {
             const res = await axios.put(``, formData, {
                 headers: {

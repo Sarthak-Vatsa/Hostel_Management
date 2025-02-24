@@ -62,7 +62,8 @@ const Navbar = () => {
             const res = await axios.post("http://localhost:8080/students/logout",{
                 withCredentials:true
             });
-            // // console.log(res);
+
+            console.log(res);
             // if(res.data.sucess){   
             //     dispatch(setUser(null));
             //     navigate("/");
