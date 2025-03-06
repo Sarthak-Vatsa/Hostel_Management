@@ -65,11 +65,11 @@ const Dashboard = () => {
 //   )
 
     return (
-        <>
+        <div>
             <Navbar></Navbar>
             <HeroSection></HeroSection>
             <Notification></Notification>
-        </>
+        </div>
     )
 }
 
