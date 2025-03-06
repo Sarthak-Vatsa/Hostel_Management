@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>HostelManagement</artifactId>
+	<artifactId>BackEnd_Hostel</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>HostelManagement</name>
+	<name>BackEnd_Hostel</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -78,6 +78,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>backend</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
