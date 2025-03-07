@@ -22,7 +22,7 @@ function Notification() {
     const fetchNotices = async () => {
       try {
         const resp = await axios.get(
-          "http://localhost:8080/students/viewNotices",
+          "https://backend-hostel-ao00.onrender.com/students/viewNotices",
           {
             withCredentials: true, // Ensures cookies are sent
             headers: {

@@ -23,7 +23,7 @@ const RegisterComplaint = () => {
                     />
                     <Button onClick={async ()=>{
                         const response = await axios.post(
-                            "http://localhost:8080/students/registerComplaint",
+                            "https://backend-hostel-ao00.onrender.com/students/registerComplaint",
                             {
                                 type:input
                             },
