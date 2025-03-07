@@ -59,7 +59,7 @@ const Navbar = () => {
 
     const logoutHandler = async ()=>{
         try {
-            const res = await axios.post("https://backend-hostel-ao00.onrender.com/students/logout",{
+            const res = await axios.post("https://backend-hostel1.onrender.com/students/logout",{
                 withCredentials:true
             });
 

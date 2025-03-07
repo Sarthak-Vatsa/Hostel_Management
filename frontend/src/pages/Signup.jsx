@@ -77,7 +77,7 @@ function Signup() {
                 </div>
                 <div className="grid w-full items-center gap-1.5">
                     <Button onClick={ async ()=>{
-                        const response = await axios.post("https://backend-hostel-ao00.onrender.com/students/signup",{
+                        const response = await axios.post("https://backend-hostel1.onrender.com/students/signup",{
                             rollNo,
                             password,
                             name,
