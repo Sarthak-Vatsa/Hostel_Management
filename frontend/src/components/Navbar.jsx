@@ -119,13 +119,13 @@ const Navbar = () => {
                                         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                                     </Avatar>
                                     <div>
-                                        <h4 className="font-medium">{user?.rollNo}</h4>
+                                        <h4 className="font-medium">{user?.student?.rollNo}</h4>
                                         <p className="text-sm text-muted-foreground"></p>
                                     </div>
                                 </div>
                                 <div className="flex flex-col my-2 text-gray-600">
                                     {
-                                        user && user?.role==='student' && (
+                                        user && user?.student?.role==='student' && (
                                             <div className="flex w-fit items-center gap-2 cursor-pointer">
                                                 <User2></User2>
                                                 <Button variant="link"><Link to="/profile">View Profile</Link></Button>
