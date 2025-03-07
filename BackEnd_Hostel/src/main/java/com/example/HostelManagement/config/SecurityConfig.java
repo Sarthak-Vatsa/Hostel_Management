@@ -23,14 +23,6 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
-//    @Autowired
-//    @Qualifier("myUserDetailsService") // Handles students
-//    private UserDetailsService studentDetailsService;
-//
-//    @Autowired
-//    @Qualifier("adminDetailsService") // Handles admins
-//    private UserDetailsService adminDetailsService;
-
     @Autowired
     private SessionAuthFilter sessionAuthFilter;
 
@@ -39,7 +31,8 @@ public class SecurityConfig {
         http
                 .cors(cors -> cors.configurationSource(request -> {
                     var config = new org.springframework.web.cors.CorsConfiguration();
-                    config.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173")); // React frontend URL
+                    config.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173", "" +
+                            "https://hostel-management-ashy.vercel.app/")); // React frontend URL
                     //config.setAllowedOrigins(List.of("*")); // for app
 
                     //config.setAllowedOrigins(List.of("*"));
@@ -55,41 +48,7 @@ public class SecurityConfig {
                 .securityMatcher("/**") // Ensures Spring Security manages all routes without interfering
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll()); // Allow all requests (NO auth control)
-                //.oauth2Login(Customizer.withDefaults());
-//                .logout(logout -> logout
-//                        .logoutUrl("/students/logout")  // Ensure this matches your controller method
-//                        .logoutSuccessUrl("/students/signin")
-//                        .invalidateHttpSession(true)
-//                        .deleteCookies("JSESSIONID")
-//                );
-//                .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/students/signup", "/students/signin", "/admin/signup", "/admin/signin").permitAll()
-//                        .requestMatchers("/admin/**").hasRole("ADMIN")  // Admin access
-//                        .requestMatchers("/students/**").hasRole("STUDENT")  // Student access
-//                        .anyRequest().authenticated()
-//                )
-//                .formLogin(form -> form
-//                        .loginProcessingUrl("/students/signin")
-//                        .usernameParameter("username") //name of the var sent by frontend
-//                        .passwordParameter("password")
-//                        .successHandler(studentSuccessHandler) // Use custom success handler
-//                        .permitAll()
-//                )
-//                .formLogin(form -> form
-//                        .loginProcessingUrl("/admin/signin")
-//                        .usernameParameter("email")  // Admin logs in with email
-//                        .passwordParameter("password")
-//                        .successHandler(adminSuccessHandler)
-//                        .permitAll()
-//                )
-//                .logout(logout -> logout
-//                        .logoutUrl("/logout") // URL for triggering logout
-//                        .logoutSuccessHandler(customLogoutSuccessHandler())
-//                        .invalidateHttpSession(true) // Invalidate the session
-//                        .deleteCookies("JSESSIONID") // Delete cookies
-//                        .permitAll()
-//                )
-//                .httpBasic(Customizer.withDefaults()); // Enable basic authentication
+
 
         return http.build();
     }
@@ -98,9 +57,4 @@ public class SecurityConfig {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
-
-//    @Bean
-//    public CustomLogoutSuccessHandler customLogoutSuccessHandler(){
-//        return new CustomLogoutSuccessHandler();
-//    }
 }
